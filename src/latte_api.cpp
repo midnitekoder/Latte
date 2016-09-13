@@ -13,7 +13,12 @@
 
 float **buffer;
 
+/*Function to create a handle of the network model
+*Parameters:
+void
 
+*Return:
+**handle of the network model*/
 latte_handle* latte_create(void)
 {
 	latte_handle *handle;
@@ -22,7 +27,14 @@ latte_handle* latte_create(void)
 	return handle;
 }
 
+/*Function to initalize the network model by parsing the lattemodel file.
+*Parameters:
+**handle: handle of the network model
+**param: parameters set by user to access input and output buffers.
 
+Return:
+status flag
+*/
 int latte_parse_and_init(latte_handle *handle, FILE* LATTE_FILE, PARAM param)
 {
 	int connection_table_h, max_buffer_size, status, node_index, layer_index,weight_index;
@@ -147,7 +159,14 @@ int latte_parse_and_init(latte_handle *handle, FILE* LATTE_FILE, PARAM param)
 
 
 
+/*Function to forward propagate the network based on the design of the network model.
+*Parameters:
+**handle: handle of the network model
+**param: parameters set by user to access input and output buffers.
 
+Return:
+status flag
+*/
 int latte_forward_prop(latte_handle* handle, PARAM param)
 {
 	int status,layer_index;
@@ -225,6 +244,14 @@ int latte_forward_prop(latte_handle* handle, PARAM param)
 }
 
 
+
+/*Function to release all the resources allocated to the network model.
+*Parameters:
+**handle: handle of the network model
+
+Return:
+status flag
+*/
 int latte_close(latte_handle* handle)
 {
 	latte_handle *h;
